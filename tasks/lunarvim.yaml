@@ -1,0 +1,18 @@
+---
+- name: Check for existing installation
+  stat:
+    path: ~/.local/share/lunarvim/lvix
+
+  register: lvim_installed
+
+- block:
+  - name: Load installer data
+    uri:
+      url: https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh
+      return_content: yes
+
+    register: lviminstall
+
+  # - name: Perform installation
+  #   command: yes n | bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+  when: not lvim_installed.stat.exists

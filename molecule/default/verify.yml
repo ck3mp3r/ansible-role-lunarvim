@@ -3,7 +3,8 @@
 
 - name: Verify
   hosts: all
-  gather_facts: false
+  vars:
+    user: root
   tasks:
   - name: Stat ~{{ user }}/.local/share/lunarvim/lvim
     stat:

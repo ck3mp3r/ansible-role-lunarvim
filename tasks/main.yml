@@ -1,7 +1,7 @@
 ---
 - name: Check for existing installation
   stat:
-    path: ~/.local/share/lunarvim/lvix
+    path: ~/.local/share/lunarvim/lvim
 
   register: lvim_installed
 

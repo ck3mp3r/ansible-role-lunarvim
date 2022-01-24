@@ -13,6 +13,7 @@
 
     register: lviminstall
 
-  # - name: Perform installation
-  #   command: yes n | bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+  - name: Perform installation
+    command: "bash -s \"{{ lviminstall }}\" -- --no-install-dependencies"
+
   when: not lvim_installed.stat.exists

@@ -2,6 +2,13 @@
 - name: Prepare
   hosts: all
   tasks:
+    - name: add extra packages repo
+      yum:
+        name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        disable_gpg_check: true
+        state: present
+      when: ansible_os_family == 'RedHat'
+
     - name: Update apt cache (on Debian).
       apt:
         update_cache: true
@@ -9,5 +16,10 @@
 
     - name: Install git
       package:
-        name:
-          - git
+        name: git
+        state: present
+
+    - name: Install neovim
+      package:
+        name: neovim
+        state: present
